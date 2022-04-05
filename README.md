@@ -27,7 +27,7 @@ https://moa.party
 
 ## Install
 
-#### Requires python 3.6+
+### Requires python 3.6+
 
 Moa is a flask app and can be run with `python` or proxied via WSGI.
 
@@ -39,6 +39,9 @@ Moa is a flask app and can be run with `python` or proxied via WSGI.
 * `MOA_CONFIG=config.DevelopmentConfig /usr/local/bin/pipenv run python -m moa.models` to create the DB tables
 * `MOA_CONFIG=config.DevelopmentConfig /usr/local/bin/pipenv run python app.py`
 * run the worker with `MOA_CONFIG=DevelopmentConfig /usr/local/bin/pipenv run python -m moa.worker`
+
+### Using docker and docker-compose
+Build your docker image and launch your server from docker-compose utility by [following those steps](./docker/README.md)
 
 ## Features
 * preserves image alt text

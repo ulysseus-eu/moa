@@ -1,0 +1,37 @@
+version: '3'
+services:
+  
+  moa:
+    restart: always
+    image: moa-passenger
+    container_name: moa_web
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./data:/home/app/moa/data
+      - ./moa.conf:/etc/nginx/conf.d/moa.conf
+      - ./passenger_wsgi.py:/home/app/moa/passenger_wsgi.py
+      - ./defaults.py:/home/app/moa/defaults.py
+      - ./certificates:/etc/letsencrypt/live/<your_domain>/
+    secrets:
+      - SECRET_KEY_PASS
+      - TWITTER_PASS
+      - INSTAGRAM_PASS
+      - SMTP_PASS
+    environment:
+      SECRET_KEY_PASS_FILE: '/run/secrets/SECRET_KEY_PASS'
+      TWITTER_PASS_FILE: '/run/secrets/TWITTER_PASS'
+      INSTAGRAM_PASS_FILE: '/run/secrets/INSTAGRAM_PASS'
+      SMTP_PASS_FILE: '/run/secrets/SMTP_PASS'
+
+
+secrets:
+  SECRET_KEY_PASS :
+      file : "./secrets/SECRET_KEY_PASS"
+  TWITTER_PASS :
+      file : "./secrets/TWITTER_PASS"
+  INSTAGRAM_PASS :
+      file : "./secrets/INSTAGRAM_PASS"
+  SMTP_PASS :
+      file : "./secrets/SMTP_PASS"
